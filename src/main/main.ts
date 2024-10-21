@@ -5,7 +5,8 @@ import { electronApp, optimizer, is } from '@electron-toolkit/utils'
 import icon from '../../resources/icon.png?asset'
 import { binaryPath } from './binary-path'
 import { fileConverter } from './fileConverter';
-import { readUserData, writeUserData } from './userData'
+import { readUserData, writeUserData } from './userData';
+
 
 app.commandLine.appendSwitch('js-flags', '--max-old-space-size=81920')
 
@@ -108,12 +109,16 @@ app.whenReady().then(() => {
 			const newFilePath = join(userData.outputFolder, newFileName);
 
 			// Move output file to new file path
-			fs.rename(outputFile, newFilePath, (err) => {
-				if (err) {
-					console.error('Error moving file: ', err);
-					mainWindow.webContents.send('showError', err);
+			try {
+				fs.renameSync(outputFile, newFilePath);
+			} catch (error) {
+				if ((error as NodeJS.ErrnoException).code === 'EXDEV') {
+					fs.copyFileSync(outputFile, newFilePath);
+					fs.unlinkSync(outputFile);
+				} else {
+					throw error;
 				}
-			});
+			}
 			mainWindow.webContents.send('compression-complete', { size_id: args.size_id, output_file: outputFile });
 		};
 		outputFile = fileConverter.compress(args.file.format.filename, args.resolution, progressCallback, endCallback);

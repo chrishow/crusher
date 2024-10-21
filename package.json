@@ -1,5 +1,5 @@
 {
-  "name": "the-crusher",
+  "name": "Crusher",
   "version": "1.0.0",
   "description": "A video compressor for Crush",
   "main": "./out/main/main.js",

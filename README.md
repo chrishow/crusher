@@ -1,34 +1,16 @@
-# electron-vite-app
+# The Crusher
 
-A minimal Electron application with TypeScript
+Compresses video files for use on web
 
-## Recommended IDE Setup
 
-- [VSCode](https://code.visualstudio.com/) + [ESLint](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint) + [Prettier](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode)
+## Install
 
-## Project Setup
+Download the latest .dmg release from:
 
-### Install
+https://github.com/chrishow/crusher/releases
 
-```bash
-$ npm install
-```
+It's huge, I know. This is due to it being an Electron app, and having a statically compiled build of FFmepg embedded in it. 
 
-### Development
 
-```bash
-$ npm run dev
-```
+Double-click the downloaded file.  
 
-### Build
-
-```bash
-# For windows
-$ npm run build:win
-
-# For macOS
-$ npm run build:mac
-
-# For Linux
-$ npm run build:linux
-```
