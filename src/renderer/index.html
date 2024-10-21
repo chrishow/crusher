@@ -1,0 +1,106 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Electron</title>
+    <!-- https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP -->
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:"
+    />
+
+    <link href="./assets/main.css" type="text/css" rel="stylesheet" />
+  </head>
+
+  <body>
+    <div id="app">
+      <img alt="logo" class="logo" src="./assets/compress.svg" />
+      <!-- <div class="creator">Crush Crusher</div> -->
+
+      <form id="form">
+        <div class="text">
+          Compress videos with 
+          <span class="ts">The Crush Crusher</span>
+        </div>
+
+        <input class="form-control" type="file" id="file" accept=".mp4"/>
+        <p style="text-align: center;margin-top: 1.5em;">
+          <button id="analyse" disabled class="btn btn-primary">Analyse</button>
+        </p>
+      </form>
+
+      <div id="step-2">
+        <div id="metadata">
+          <table class="table table-dark table-striped">
+            <thead>
+            <tr>
+              <th>File name</th>
+              <th>Size</th>
+              <th>Width</th>
+              <th>Height</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td id="filename"></td>
+              <td id="filesize"></td>
+              <td id="width"></td>
+              <td id="height"></td>
+            </tr>
+          </tbody>
+          </table>
+        </div>
+
+        <div id="compression">
+          Choose sizes to compress to:
+          <div id="sizes">
+            <div id="size-2160p" disabled>
+              <label for="2160p">
+                <input type="checkbox" name="2160p" id="2160p">
+                2160p
+              </label>
+              <progress id="progress" value="0" max="100"></progress>
+              <span class="completed-message">Completed!</span>
+            </div>
+
+            <div id="size-1080p">
+              <label for="1080p">
+                <input type="checkbox" name="1080p" id="1080p">
+                1080p
+              </label>
+              <progress id="progress" value="0" max="100"></progress>
+              <span class="completed-message">Completed!</span>
+            </div>
+
+            <div id="size-720p">
+              <label for="720p">
+                <input type="checkbox" name="720p" id="720p">
+                720p
+              </label>
+              <progress id="progress" value="0" max="100"></progress>
+              <span class="completed-message">Completed!</span>
+            </div>
+
+          </div>
+
+          <p>
+            Output folder (<a href="#" id="choose-output-folder-link">Choose</a>): <br><span id="output-folder"></span>&nbsp;
+          </p>
+
+          <p style="text-align: center;">
+            <button id="start-compression" class="btn btn-primary">Crush files</button>&nbsp;&nbsp;
+            <button id="start-over" class="btn btn-light">Start over</button>  
+          </p>
+        </div>
+    </div>
+
+      <ul class="versions">
+        <li class="electron-version"></li>
+        <li class="chrome-version"></li>
+        <li class="node-version"></li>
+      </ul>
+    </div>
+
+    <script type="module" src="./src/renderer.ts"></script>
+  </body>
+</html>

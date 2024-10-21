@@ -1,0 +1,1 @@
+Copy static binaries of ffmpeg and ffprobe into this folder
